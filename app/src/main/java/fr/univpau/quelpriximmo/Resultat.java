@@ -29,20 +29,25 @@ public class Resultat extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.resultat);
         // Create the adapter to convert the array to views
-        this.adapter = new ListItemAdapter(this, arrayOfItems);
+        adapter = new ListItemAdapter(this, arrayOfItems);
         // Attach the adapter to a ListView
         ListView listView = (ListView) findViewById(R.id.list);
-        listView.setAdapter(this.adapter);
+        listView.setAdapter(adapter);
+
+        //Bundle bundle = getIntent().getExtras();
+        //Log.i("TAG", bundle.getString("Valeur"));
+        // Add item to adapter
+        //email=bundle.getString("Valeur");
+
 
         Bundle bundle = getIntent().getExtras();
-        //Log.i("TAG", bundle.getString("Valeur"));
-
+        ArrayList arlText = bundle.getStringArrayList("Valeur");
         // Add item to adapter
-        email=bundle.getString("Valeur");
+        Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText));
+        email="test2";
         mobile="test";
-
         ListItem nouvelleMaison = new ListItem(email, mobile);
         this.adapter.add(nouvelleMaison);
     }

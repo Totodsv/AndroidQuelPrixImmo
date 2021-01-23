@@ -4,25 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import fr.univpau.quelpriximmo.listItem.ListItem;
-import fr.univpau.quelpriximmo.listItem.ListItemAdapter;
+import fr.univpau.quelpriximmo.GPS.GpsTracker;
 
 public class MainActivity extends AppCompatActivity {
 

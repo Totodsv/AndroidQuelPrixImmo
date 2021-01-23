@@ -3,11 +3,8 @@ package fr.univpau.quelpriximmo;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,11 +12,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import fr.univpau.quelpriximmo.listItem.ListItem;
-import fr.univpau.quelpriximmo.listItem.ListItemAdapter;
+import fr.univpau.quelpriximmo.Http.HttpHandler;
 
 import static android.content.ContentValues.TAG;
 
@@ -48,7 +42,7 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
 
         HttpHandler sh = new HttpHandler();
         // Making a request to url and getting response
-        String url = "http://api.androidhive.info/contacts/";
+        String url = "https://api.androidhive.info/contacts/";
         String jsonStr = sh.makeServiceCall(url);
 
         Log.e(TAG, "Response from url: " + jsonStr);
@@ -120,19 +114,15 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
         if(progress.isShowing()) progress.dismiss();
-
-        Intent i = new Intent(); /* Intent de type direct */
-        i.putExtra("Valeur", contactList); /* Donnée additionnelle */
+        /*Intent i = new Intent();
+        i.putExtra("Valeur", contactList);
         i.setClass(screen, Resultat.class);
+        screen.startActivity(i); */
+        Intent i = new Intent(); /* Intent de type direct */
+        i.setClass(screen, Resultat.class);
+        Bundle testSend = new Bundle();
+        testSend.putSerializable("Valeur", contactList);
+        i.putExtras(testSend);
         screen.startActivity(i); /* Poussé sur le bus */
-
-
-        //this.screen.populate(result);
-        //System.out.println("ICIIIIIIIIIIIIIIIIIIIIIIIIIII"+result);
-        /*ListAdapter adapter = new SimpleAdapter(
-                screen, (List<? extends Map<String, ?>>) arrayOfItems,
-                R.layout.list_item, new String[]{"name", "email",
-                "mobile"}, new int[]{R.id.email, R.id.mobile});
-        listView.setAdapter(this.adapter);*/
    }
 }

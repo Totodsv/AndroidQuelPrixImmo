@@ -1,4 +1,4 @@
-package fr.univpau.quelpriximmo;
+package fr.univpau.quelpriximmo.Http;
 
 import android.util.Log;
 

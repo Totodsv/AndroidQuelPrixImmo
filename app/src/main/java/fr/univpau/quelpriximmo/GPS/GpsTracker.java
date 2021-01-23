@@ -1,4 +1,4 @@
-package fr.univpau.quelpriximmo;
+package fr.univpau.quelpriximmo.GPS;
 
 import android.Manifest;
 import android.app.Activity;
@@ -18,7 +18,7 @@ import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 
-class GpsTracker extends Service implements LocationListener {
+public class GpsTracker extends Service implements LocationListener {
     private final Context mContext;
 
     // flag for GPS status
