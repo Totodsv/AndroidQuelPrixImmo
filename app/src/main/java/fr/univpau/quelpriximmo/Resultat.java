@@ -42,20 +42,16 @@ public class Resultat extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         Bundle bundle = getIntent().getExtras();
-        //HashMap<String,String> arlText = (HashMap<String, String>) bundle.getSerializable("Valeur");
-        ArrayList arlText = bundle.getStringArrayList("Valeur");
-        //List<HashMap<String,Object>> arlText=(ArrayList<HashMap<String,Object>>)request.getAttribute("Valeur"); //c'est comme ça que je devais récupérer la liste.
-
+        ArrayList<HashMap> arlText = (ArrayList<HashMap>)bundle.getSerializable("Valeur");
 
         // Add item to adapter
         Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText));
         Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.size()));
-        //Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.get("email")));
 
         for(int i=0; i<arlText.size();i++){
             Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.get(i)));
-            email=String.valueOf(arlText.get(i));
-            mobile=String.valueOf(i);
+            email=String.valueOf(arlText.get(i).get("email"));
+            mobile=String.valueOf(arlText.get(i).get("mobile"));
             ListItem nouvelleMaison = new ListItem(email, mobile);
             this.adapter.add(nouvelleMaison);
         }
