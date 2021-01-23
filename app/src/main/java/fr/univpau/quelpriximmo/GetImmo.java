@@ -23,6 +23,7 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
     private MainActivity screen;
     ArrayList<Object> contactList = new ArrayList<>();
 
+
     public GetImmo(MainActivity s) {
         this.screen = s;
         this.progress = new ProgressDialog(this.screen);

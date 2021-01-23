@@ -11,8 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 import fr.univpau.quelpriximmo.listItem.ListItem;
 import fr.univpau.quelpriximmo.listItem.ListItemAdapter;
@@ -25,7 +31,6 @@ public class Resultat extends AppCompatActivity {
     String email;
     String mobile;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,26 +41,28 @@ public class Resultat extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
 
-        //Bundle bundle = getIntent().getExtras();
-        //Log.i("TAG", bundle.getString("Valeur"));
-        // Add item to adapter
-        //email=bundle.getString("Valeur");
-
-
         Bundle bundle = getIntent().getExtras();
+        //HashMap<String,String> arlText = (HashMap<String, String>) bundle.getSerializable("Valeur");
         ArrayList arlText = bundle.getStringArrayList("Valeur");
+        //List<HashMap<String,Object>> arlText=(ArrayList<HashMap<String,Object>>)request.getAttribute("Valeur"); //c'est comme ça que je devais récupérer la liste.
+
+
         // Add item to adapter
         Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText));
-        email="test2";
-        mobile="test";
-        ListItem nouvelleMaison = new ListItem(email, mobile);
-        this.adapter.add(nouvelleMaison);
+        Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.size()));
+        //Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.get("email")));
+
+        for(int i=0; i<arlText.size();i++){
+            Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.get(i)));
+            email=String.valueOf(arlText.get(i));
+            mobile=String.valueOf(i);
+            ListItem nouvelleMaison = new ListItem(email, mobile);
+            this.adapter.add(nouvelleMaison);
+        }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
     }
-
-
 }
