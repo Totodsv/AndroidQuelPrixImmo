@@ -7,17 +7,46 @@
     tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/nbPieces"
-        android:layout_width="65dp"
-        android:layout_height="27dp"
-        android:text="Pièces :"
-        app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
+    <Button
+        android:id="@+id/buttonRecherche"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="recherche"
+        android:text="Recherche"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.912" />
+        app:layout_constraintVertical_bias="0.926" />
+
+    <Button
+        android:id="@+id/btnMaison"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Maison"
+        android:onClick="maisonTag"
+        app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
+        app:layout_constraintEnd_toStartOf="@+id/btnAppartement"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.645"
+        tools:ignore="OnClick" />
+
+    <Button
+        android:id="@+id/btnAppartement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Appartement"
+        android:onClick="appartementTag"
+        app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.643"
+        tools:ignore="OnClick" />
 
     <EditText
         android:id="@+id/Rayon"
@@ -31,71 +60,114 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.765" />
+        app:layout_constraintVertical_bias="0.842" />
 
-    <Button
-        android:id="@+id/buttonRecherche"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="recherche"
-        android:text="Recherche"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="195dp"
+        android:layout_height="167dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtTypeBiens"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.857" />
+        app:layout_constraintVertical_bias="0.29"
+        app:srcCompat="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/txtTypeBiens"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type de biens"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnMaison"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.912" />
+
+    <TextView
+        android:id="@+id/txtNbPieces"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre de pièces"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.859" />
+
+    <TextView
+        android:id="@+id/txtMinPieces"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Min."
+        app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.21"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNbPieces"
+        app:layout_constraintVertical_bias="0.372" />
+
+    <EditText
+        android:id="@+id/minPieces"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:hint="1"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
+        app:layout_constraintEnd_toStartOf="@+id/txtMaxPieces"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/txtMinPieces"
+        app:layout_constraintTop_toBottomOf="@+id/txtNbPieces"
+        app:layout_constraintVertical_bias="0.411" />
+
+    <EditText
+        android:id="@+id/maxPieces"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="8"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintStart_toEndOf="@+id/txtMaxPieces"
+        app:layout_constraintTop_toBottomOf="@+id/txtNbPieces"
+        app:layout_constraintVertical_bias="0.352" />
+
+    <TextView
+        android:id="@+id/txtMaxPieces"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Max."
+        app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.716"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNbPieces"
+        app:layout_constraintVertical_bias="0.395" />
 
     <com.google.android.material.slider.RangeSlider
         android:id="@+id/rangeSlider2"
         android:layout_width="327dp"
         android:layout_height="45dp"
-        android:layout_marginStart="40dp"
         android:stepSize="1.0"
         android:valueFrom="1.0"
         android:valueTo="8.0"
         app:layout_constraintBottom_toTopOf="@+id/buttonRecherche"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.665"
+        app:layout_constraintVertical_bias="0.798"
         app:values="@array/initial_slider_values"
         tools:ignore="MissingConstraints,UnknownId" />
-
-    <Button
-        android:id="@+id/btnMaison"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Maison"
-        app:layout_constraintBottom_toTopOf="@+id/nbPieces"
-        app:layout_constraintEnd_toStartOf="@+id/btnAppartement"
-        app:layout_constraintHorizontal_bias="0.568"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.66" />
-
-    <Button
-        android:id="@+id/btnAppartement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Appartement"
-        app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.786"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Type de biens :"
-        app:layout_constraintBottom_toTopOf="@+id/nbPieces"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.118"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.382" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

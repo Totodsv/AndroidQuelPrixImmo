@@ -40,7 +40,7 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... arg0) {
-
+        Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + MainActivity.getpieceMaximum());
         HttpHandler sh = new HttpHandler();
 
         //changement url
@@ -81,6 +81,7 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
                     String valeur_fonciere = properties.getString("valeur_fonciere");
 
                     if( !properties.isNull("type_local")){
+
                         type_local = properties.getString("type_local");
                     }
                     else{
