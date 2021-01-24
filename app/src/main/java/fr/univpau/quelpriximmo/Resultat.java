@@ -46,11 +46,11 @@ public class Resultat extends AppCompatActivity {
         ArrayList<HashMap> arlText = (ArrayList<HashMap>)bundle.getSerializable("Valeur");
 
         // Add item to adapter
-        Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText));
+        //Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText));
         Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.size()));
 
         for(int i=0; i<arlText.size();i++){
-            Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.get(i)));
+            //Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.get(i)));
             valeur_fonciere=String.valueOf(arlText.get(i).get("valeur_fonciere"));
             type_local=String.valueOf(arlText.get(i).get("type_local"));
             nombre_pieces_principales=String.valueOf(arlText.get(i).get("nombre_pieces_principales"));

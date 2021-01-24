@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">QuelPrixImmo</string>
+    <string name="description">Cette application est un projet Android de M2 TI</string>
+    <string name="auteur">Thomas DA SILVA, Vassili DURAND</string>
+    <string name="titre">QuelPrixImmo</string>
+    <string name="titreBiens">Séléctionnez un type de bien</string>
+    <string-array name="typeBien">
+        <item>Maison</item>
+        <item>Appartement</item>
+        <item>Maison et Appartement</item>
+    </string-array>
 </resources>

@@ -65,7 +65,7 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
 
                 // Getting JSON Array node
                 JSONArray features = jsonObj.getJSONArray("features");
-                Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + features.length());
+                //Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + features.length());
                 // looping through All Contacts
                 for (int i = 0; i < features.length(); i++) {
                     JSONObject c = features.getJSONObject(i);
@@ -73,8 +73,8 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
                     // Phone node is JSON Object
 
                     JSONObject properties = c.getJSONObject("properties");
-                    Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + i);
-                    Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + properties.getString("type_local").isEmpty());
+                    //Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + i);
+                    //Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + properties.getString("type_local").isEmpty());
 
                     String type_local;
                     String nombre_pieces_principales;
@@ -87,10 +87,7 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
                         type_local="inconnu";
 
                     }
-
-
                     if( !properties.isNull("nombre_pieces_principales")){
-
                         nombre_pieces_principales = properties.getString("nombre_pieces_principales");
                     }
                     else{

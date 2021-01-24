@@ -56,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
         // envoi des valeurs
         tvRayon = (EditText) findViewById(R.id.Rayon);
-        tvLatitude = findViewById(R.id.latitude);
-        tvLongitude = findViewById(R.id.longitude);
 
         rayonValue = tvRayon.getText().toString();
         LatitudeValue = String.valueOf(tLatitudeValue);
