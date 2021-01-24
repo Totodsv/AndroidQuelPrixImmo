@@ -8,4 +8,5 @@
         <item>1.0</item>
         <item>8.0</item>
     </array>
+    <string name="titreResultat">X biens ont été trouvés</string>
 </resources>
