@@ -4,9 +4,8 @@
     <string name="auteur">Thomas DA SILVA, Vassili DURAND</string>
     <string name="titre">QuelPrixImmo</string>
     <string name="titreBiens">Séléctionnez un type de bien</string>
-    <string-array name="typeBien">
-        <item>Maison</item>
-        <item>Appartement</item>
-        <item>Maison et Appartement</item>
-    </string-array>
+    <array name="initial_slider_values">
+        <item>1.0</item>
+        <item>8.0</item>
+    </array>
 </resources>

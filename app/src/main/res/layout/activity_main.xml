@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+    <TextView
+        android:id="@+id/nbPieces"
+        android:layout_width="65dp"
+        android:layout_height="27dp"
+        android:text="Pièces :"
+        app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.912" />
+
     <EditText
         android:id="@+id/Rayon"
         android:layout_width="wrap_content"
@@ -33,30 +46,56 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.857" />
 
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/typeBien"
-        android:prompt="@string/titreBiens"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/rangeSlider2"
+        android:layout_width="327dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="40dp"
+        android:stepSize="1.0"
+        android:valueFrom="1.0"
+        android:valueTo="8.0"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRecherche"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.302"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.665"
+        app:values="@array/initial_slider_values"
+        tools:ignore="MissingConstraints,UnknownId" />
 
-    <EditText
-        android:id="@+id/editTextNumber"
+    <Button
+        android:id="@+id/btnMaison"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="Nombre Pièces"
-        app:layout_constraintBottom_toTopOf="@+id/Rayon"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Maison"
+        app:layout_constraintBottom_toTopOf="@+id/nbPieces"
+        app:layout_constraintEnd_toStartOf="@+id/btnAppartement"
+        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner1" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.66" />
+
+    <Button
+        android:id="@+id/btnAppartement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Appartement"
+        app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.786"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.54" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type de biens :"
+        app:layout_constraintBottom_toTopOf="@+id/nbPieces"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.382" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
