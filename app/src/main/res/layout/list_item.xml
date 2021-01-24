@@ -23,6 +23,12 @@
             android:layout_height="wrap_content"
             android:textColor="#5d5d5d"
             android:textStyle="bold" />
+        <TextView
+            android:id="@+id/nombre_pieces_principales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#5d5d5d"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

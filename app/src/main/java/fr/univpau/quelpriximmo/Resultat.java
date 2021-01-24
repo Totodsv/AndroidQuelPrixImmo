@@ -28,8 +28,9 @@ public class Resultat extends AppCompatActivity {
     // Construct the data source
     ArrayList<ListItem> arrayOfItems = new ArrayList<ListItem>();
     ListItemAdapter adapter;
-    String email;
-    String mobile;
+    String valeur_fonciere;
+    String type_local;
+    String nombre_pieces_principales;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +51,11 @@ public class Resultat extends AppCompatActivity {
 
         for(int i=0; i<arlText.size();i++){
             Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.get(i)));
-            email=String.valueOf(arlText.get(i).get("email"));
-            mobile=String.valueOf(arlText.get(i).get("mobile"));
-            ListItem nouvelleMaison = new ListItem(email, mobile);
+            valeur_fonciere=String.valueOf(arlText.get(i).get("valeur_fonciere"));
+            type_local=String.valueOf(arlText.get(i).get("type_local"));
+            nombre_pieces_principales=String.valueOf(arlText.get(i).get("nombre_pieces_principales"));
+
+            ListItem nouvelleMaison = new ListItem(valeur_fonciere,type_local,nombre_pieces_principales);
             this.adapter.add(nouvelleMaison);
         }
     }

@@ -29,11 +29,12 @@ public class ListItemAdapter extends ArrayAdapter<ListItem> {
         // Lookup view for data population
         TextView addEmail = (TextView) convertView.findViewById(R.id.email);
         TextView numMobile = (TextView) convertView.findViewById(R.id.mobile);
-
+        TextView nombre_pieces_principales = (TextView) convertView.findViewById(R.id.nombre_pieces_principales);
 
         // Populate the data into the template view using the data object
-        addEmail.setText(listItem.email);
-        numMobile.setText(listItem.mobile);
+        addEmail.setText(listItem.valeur_fonciere);
+        numMobile.setText(listItem.type_local);
+        nombre_pieces_principales.setText(listItem.nombre_pieces_principales);
         //tacheBox.isChecked();
 
         // Return the completed view to render on screen

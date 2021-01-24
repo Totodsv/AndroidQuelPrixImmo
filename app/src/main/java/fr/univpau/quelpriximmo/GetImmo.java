@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,7 +23,6 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
     private ProgressDialog progress;
     private MainActivity screen;
     ArrayList<Object> contactList = new ArrayList<>();
-
 
     public GetImmo(MainActivity s) {
         this.screen = s;
@@ -42,41 +42,68 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... arg0) {
 
         HttpHandler sh = new HttpHandler();
-        // Making a request to url and getting response
-        String url = "https://api.androidhive.info/contacts/";
+
+        //changement url
+        String rayon = MainActivity.getRayon();
+        String latitude = MainActivity.getLatitude();
+        String longitute = MainActivity.getLongitude();
+
+        Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + rayon);
+        Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + latitude);
+        Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + longitute);
+
+
+
+        String url = "https://api.cquest.org/dvf?lat="+latitude+"&lon="+longitute+"&dist="+rayon;
+
+        Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + url);
         String jsonStr = sh.makeServiceCall(url);
 
-        Log.e(TAG, "Response from url: " + jsonStr);
         if (jsonStr != null) {
             try {
                 JSONObject jsonObj = new JSONObject(jsonStr);
 
                 // Getting JSON Array node
-                JSONArray contacts = jsonObj.getJSONArray("contacts");
-
+                JSONArray features = jsonObj.getJSONArray("features");
+                Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + features.length());
                 // looping through All Contacts
-                for (int i = 0; i < contacts.length(); i++) {
-                    JSONObject c = contacts.getJSONObject(i);
-                    String id = c.getString("id");
-                    String name = c.getString("name");
-                    String email = c.getString("email");
-                    String address = c.getString("address");
-                    String gender = c.getString("gender");
+                for (int i = 0; i < features.length(); i++) {
+                    JSONObject c = features.getJSONObject(i);
 
                     // Phone node is JSON Object
-                    JSONObject phone = c.getJSONObject("phone");
-                    String mobile = phone.getString("mobile");
-                    String home = phone.getString("home");
-                    String office = phone.getString("office");
+
+                    JSONObject properties = c.getJSONObject("properties");
+                    Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + i);
+                    Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + properties.getString("type_local").isEmpty());
+
+                    String type_local;
+                    String nombre_pieces_principales;
+                    String valeur_fonciere = properties.getString("valeur_fonciere");
+
+                    if( !properties.isNull("type_local")){
+                        type_local = properties.getString("type_local");
+                    }
+                    else{
+                        type_local="inconnu";
+
+                    }
+
+
+                    if( !properties.isNull("nombre_pieces_principales")){
+
+                        nombre_pieces_principales = properties.getString("nombre_pieces_principales");
+                    }
+                    else{
+                        nombre_pieces_principales="inconnu";
+                    }
 
                     // tmp hash map for single contact
                     HashMap<String, String> contact = new HashMap<>();
 
                     // adding each child node to HashMap key => value
-                    contact.put("id", id);
-                    contact.put("name", name);
-                    contact.put("email", email);
-                    contact.put("mobile", mobile);
+                    contact.put("valeur_fonciere", valeur_fonciere);
+                    contact.put("type_local", type_local);
+                    contact.put("nombre_pieces_principales", nombre_pieces_principales);
 
                     // adding contact to contact list
                     contactList.add(contact);
