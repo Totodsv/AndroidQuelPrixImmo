@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.slider.Slider;
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
             boutonMaison.setBackgroundColor(getResources().getColor(R.color.white));
             boutonMaison.setTextColor(getResources().getColor(R.color.themeOrange));
             maisonTag = false;
+            Toast.makeText(this,"Maison retirée du filtre de recherche",Toast.LENGTH_SHORT).show();
         }
         else {
             //On enfonce le bouton
@@ -120,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
             boutonMaison.setTextColor(getResources().getColor(R.color.white));
             //boutonMaison.getBackground().setColorFilter(getResources().getColor(R.color.themeOrange), PorterDuff.Mode.MULTIPLY);
             maisonTag = true;
+            Toast.makeText(this,"Maison ajoutée au filtre de recherche",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -130,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
             boutonAppartement.setBackgroundColor(getResources().getColor(R.color.white));
             boutonAppartement.setTextColor(getResources().getColor(R.color.themeOrange));
             appartementTag = false;
+            Toast.makeText(this,"Appartement retiré du filtre de recherche",Toast.LENGTH_SHORT).show();
         }
         else {
             //On enfonce le bouton
@@ -137,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
             boutonAppartement.setBackgroundColor(getResources().getColor(R.color.themeOrange));
             boutonAppartement.setTextColor(getResources().getColor(R.color.white));
             appartementTag = true;
+            Toast.makeText(this,"Appartement ajouté au filtre de recherche",Toast.LENGTH_SHORT).show();
         }
     }
 
