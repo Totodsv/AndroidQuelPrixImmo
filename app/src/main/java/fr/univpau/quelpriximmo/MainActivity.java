@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -24,7 +27,7 @@ import fr.univpau.quelpriximmo.GPS.GpsTracker;
 public class MainActivity extends AppCompatActivity {
 
     private GpsTracker gpsTracker;
-    private TextView tvLatitude,tvLongitude;
+    private Button boutonMaison, boutonAppartement;
     private  static EditText tvRayon;
     private static  String rayonValue, LatitudeValue, longitudeValue ;
     private double tLatitudeValue, tlongitudeValue;
@@ -36,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        boutonMaison = findViewById(R.id.btnMaison);
+        boutonMaison.setBackgroundColor(getResources().getColor(R.color.white));
+        boutonMaison.setTextColor(getResources().getColor(R.color.themeOrange));
+        boutonAppartement = findViewById(R.id.btnAppartement);
+        boutonAppartement.setBackgroundColor(getResources().getColor(R.color.white));
+        boutonAppartement.setTextColor(getResources().getColor(R.color.themeOrange));
         RangeSlider slider = findViewById(R.id.rangeSlider2);
         slider.addOnSliderTouchListener(touchListener);
         textMinP = (EditText) findViewById(R.id.minPieces);
@@ -69,8 +78,6 @@ public class MainActivity extends AppCompatActivity {
                     textMinP.setText(String.valueOf(minP));
                     textMaxP.setText(String.valueOf(maxP));
                 }
-
-
             };
 
 
@@ -101,24 +108,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void maisonTag(View view) {
-
-        if (maisonTag == true)
+        if (maisonTag == true) {
+            //On reset le bouton
+            boutonMaison.setBackgroundColor(getResources().getColor(R.color.white));
+            boutonMaison.setTextColor(getResources().getColor(R.color.themeOrange));
             maisonTag = false;
-        else
+        }
+        else {
+            //On enfonce le bouton
+            boutonMaison.setBackgroundColor(getResources().getColor(R.color.themeOrange));
+            boutonMaison.setTextColor(getResources().getColor(R.color.white));
+            //boutonMaison.getBackground().setColorFilter(getResources().getColor(R.color.themeOrange), PorterDuff.Mode.MULTIPLY);
             maisonTag = true;
+        }
     }
 
     public void appartementTag(View view) {
-        if (appartementTag == true)
+        if (appartementTag == true) {
+            //On reset le bouton
+            //boutonAppartement.setBackgroundColor(getResources().getColor(R.color.themeOrange));
+            boutonAppartement.setBackgroundColor(getResources().getColor(R.color.white));
+            boutonAppartement.setTextColor(getResources().getColor(R.color.themeOrange));
             appartementTag = false;
-        else
+        }
+        else {
+            //On enfonce le bouton
+            //boutonAppartement.setBackgroundColor(getResources().getColor(R.color.themeViolet));
+            boutonAppartement.setBackgroundColor(getResources().getColor(R.color.themeOrange));
+            boutonAppartement.setTextColor(getResources().getColor(R.color.white));
             appartementTag = true;
+        }
     }
 
     public static String getRayon() {
         return rayonValue;
     }
-
     public static String getLatitude() {
         return LatitudeValue;
     }
