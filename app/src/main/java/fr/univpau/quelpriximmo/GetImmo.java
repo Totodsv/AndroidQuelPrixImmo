@@ -79,22 +79,35 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
                     String type_local;
                     String nombre_pieces_principales;
                     String valeur_fonciere = properties.getString("valeur_fonciere");
+                    String nature_mutation;
+                    String verifMaison = "rien";
+                    String verifAppartement = "rien";
+                    int pieceMini = MainActivity.getpieceMinimum();
+                    int pieceMaxi = MainActivity.getpieceMaximum();
 
-                    if( !properties.isNull("type_local")){
+                    if (!properties.isNull("type_local")) {
 
                         type_local = properties.getString("type_local");
-                    }
-                    else{
-                        type_local="inconnu";
+                    } else {
+                        type_local = "inconnu";
 
                     }
-                    if( !properties.isNull("nombre_pieces_principales")){
-                        nombre_pieces_principales = properties.getString("nombre_pieces_principales");
+                    if (!properties.isNull("nombre_pieces_principales")) {
+                        if(pieceMini <= Integer.parseInt(properties.getString("nombre_pieces_principales")) &&  pieceMaxi >= Integer.parseInt(properties.getString("nombre_pieces_principales"))) {
+                            nombre_pieces_principales = properties.getString("nombre_pieces_principales");
+                        }
+                        else {
+                            nombre_pieces_principales = "inconnu";
+                        }
+                    } else {
+                        nombre_pieces_principales = "inconnu";
                     }
-                    else{
-                        nombre_pieces_principales="inconnu";
-                    }
+                    if (!properties.isNull("nature_mutation")) {
 
+                        nature_mutation = properties.getString("nature_mutation");
+                    } else {
+                        nature_mutation = "inconnu";
+                    }
                     // tmp hash map for single contact
                     HashMap<String, String> contact = new HashMap<>();
 
@@ -103,8 +116,21 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
                     contact.put("type_local", type_local);
                     contact.put("nombre_pieces_principales", nombre_pieces_principales);
 
+                    if(MainActivity.getMaisonTag()== true){
+                        verifMaison="Maison";
+                    }
+                    if(MainActivity.getAppartementTag()== true){
+                        verifAppartement="Appartement";
+                    }
+
                     // adding contact to contact list
-                    contactList.add(contact);
+                    if(!nombre_pieces_principales.equals("inconnu")) {
+                        if (verifMaison.equals(type_local) || verifAppartement.equals(type_local)) {
+                            if (nature_mutation.equals("Vente")) {
+                                contactList.add(contact);
+                            }
+                        }
+                    }
                 }
             } catch (final JSONException e) {
                 Log.e(TAG, "Json parsing error: " + e.getMessage());

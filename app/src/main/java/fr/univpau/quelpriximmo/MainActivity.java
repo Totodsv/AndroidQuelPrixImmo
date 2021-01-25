@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         return Math.round(pieceMinimum);
     }
     public static int getpieceMaximum() {
-        return Math.round(pieceMinimum);
+        return Math.round(pieceMaximum);
     }
     public static boolean getMaisonTag() {
         return maisonTag;
