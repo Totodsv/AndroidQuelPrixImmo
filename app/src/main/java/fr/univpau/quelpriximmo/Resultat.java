@@ -31,6 +31,8 @@ public class Resultat extends AppCompatActivity {
     String valeur_fonciere;
     String type_local;
     String nombre_pieces_principales;
+    String adresse;
+    String date_mutation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +56,9 @@ public class Resultat extends AppCompatActivity {
             valeur_fonciere=String.valueOf(arlText.get(i).get("valeur_fonciere"));
             type_local=String.valueOf(arlText.get(i).get("type_local"));
             nombre_pieces_principales=String.valueOf(arlText.get(i).get("nombre_pieces_principales"));
-
-            ListItem nouvelleMaison = new ListItem(valeur_fonciere,type_local,nombre_pieces_principales);
+            adresse=String.valueOf(arlText.get(i).get("adresse"));
+            date_mutation=String.valueOf(arlText.get(i).get("date_mutation"));
+            ListItem nouvelleMaison = new ListItem(valeur_fonciere,type_local,nombre_pieces_principales,adresse,date_mutation);
             this.adapter.add(nouvelleMaison);
         }
     }

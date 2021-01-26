@@ -82,8 +82,15 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
                     String nature_mutation;
                     String verifMaison = "rien";
                     String verifAppartement = "rien";
+                    String numero_voie =properties.getString("numero_voie");
+                    String type_voie =properties.getString("type_voie");
+                    String voie = properties.getString("voie");
+                    String date_mutation_US = properties.getString("date_mutation");
                     int pieceMini = MainActivity.getpieceMinimum();
                     int pieceMaxi = MainActivity.getpieceMaximum();
+                    String adresse = numero_voie+" "+type_voie+" "+voie;
+                    String[] arr = date_mutation_US.split("-");
+                    String date_mutation = arr[2] + "/" + arr[1] + "/" + arr[0];
 
                     if (!properties.isNull("type_local")) {
 
@@ -115,6 +122,8 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
                     contact.put("valeur_fonciere", valeur_fonciere);
                     contact.put("type_local", type_local);
                     contact.put("nombre_pieces_principales", nombre_pieces_principales);
+                    contact.put("adresse", adresse);
+                    contact.put("date_mutation", date_mutation);
 
                     if(MainActivity.getMaisonTag()== true){
                         verifMaison="Maison";
@@ -134,31 +143,11 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
                 }
             } catch (final JSONException e) {
                 Log.e(TAG, "Json parsing error: " + e.getMessage());
-                /*
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(),
-                                "Json parsing error: " + e.getMessage(),
-                                Toast.LENGTH_LONG).show();
-                    }
-                })*/;
-
             }
 
         } else {
             Log.e(TAG, "Couldn't get json from server.");
-            /*runOnUiThread(new Runnable() {
-
-                @Override
-                public void run() {
-                    Toast.makeText(getApplicationContext(),
-                            "Couldn't get json from server. Check LogCat for possible errors!",
-                            Toast.LENGTH_LONG).show();
-                }
-            });*/
         }
-
         return null;
     }
 
@@ -166,10 +155,6 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
         if(progress.isShowing()) progress.dismiss();
-        /*Intent i = new Intent();
-        i.putExtra("Valeur", contactList);
-        i.setClass(screen, Resultat.class);
-        screen.startActivity(i); */
         Intent i = new Intent(); /* Intent de type direct */
         i.setClass(screen, Resultat.class);
         Bundle testSend = new Bundle();

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private static  String rayonValue, LatitudeValue, longitudeValue ;
     private double tLatitudeValue, tlongitudeValue;
     private static  Float pieceMinimum, pieceMaximum;
-    EditText textMinP, textMaxP;
+    TextView textMinP, textMaxP;
     private static Boolean maisonTag=false, appartementTag=false;
 
     @Override
@@ -41,15 +41,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         boutonMaison = findViewById(R.id.btnMaison);
-        boutonMaison.setBackgroundColor(getResources().getColor(R.color.white));
-        boutonMaison.setTextColor(getResources().getColor(R.color.themeOrange));
         boutonAppartement = findViewById(R.id.btnAppartement);
-        boutonAppartement.setBackgroundColor(getResources().getColor(R.color.white));
-        boutonAppartement.setTextColor(getResources().getColor(R.color.themeOrange));
         RangeSlider slider = findViewById(R.id.rangeSlider2);
         slider.addOnSliderTouchListener(touchListener);
-        textMinP = (EditText) findViewById(R.id.minPieces);
-        textMaxP = (EditText) findViewById(R.id.maxPieces);
+        textMinP = findViewById(R.id.minPieces);
+        textMaxP = findViewById(R.id.maxPieces);
         try {
             if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
                 ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
@@ -111,15 +107,16 @@ public class MainActivity extends AppCompatActivity {
     public void maisonTag(View view) {
         if (maisonTag == true) {
             //On reset le bouton
-            boutonMaison.setBackgroundColor(getResources().getColor(R.color.white));
-            boutonMaison.setTextColor(getResources().getColor(R.color.themeOrange));
+
+            boutonMaison.setBackgroundColor(getResources().getColor(R.color.themeOrange));
+            boutonMaison.setTextColor(getResources().getColor(R.color.white));
             maisonTag = false;
             Toast.makeText(this,"Maison retirée du filtre de recherche",Toast.LENGTH_SHORT).show();
         }
         else {
             //On enfonce le bouton
-            boutonMaison.setBackgroundColor(getResources().getColor(R.color.themeOrange));
-            boutonMaison.setTextColor(getResources().getColor(R.color.white));
+            boutonMaison.setBackgroundColor(getResources().getColor(R.color.white));
+            boutonMaison.setTextColor(getResources().getColor(R.color.themeOrange));
             //boutonMaison.getBackground().setColorFilter(getResources().getColor(R.color.themeOrange), PorterDuff.Mode.MULTIPLY);
             maisonTag = true;
             Toast.makeText(this,"Maison ajoutée au filtre de recherche",Toast.LENGTH_SHORT).show();
@@ -130,16 +127,16 @@ public class MainActivity extends AppCompatActivity {
         if (appartementTag == true) {
             //On reset le bouton
             //boutonAppartement.setBackgroundColor(getResources().getColor(R.color.themeOrange));
-            boutonAppartement.setBackgroundColor(getResources().getColor(R.color.white));
-            boutonAppartement.setTextColor(getResources().getColor(R.color.themeOrange));
+            boutonAppartement.setBackgroundColor(getResources().getColor(R.color.themeOrange));
+            boutonAppartement.setTextColor(getResources().getColor(R.color.white));
             appartementTag = false;
             Toast.makeText(this,"Appartement retiré du filtre de recherche",Toast.LENGTH_SHORT).show();
         }
         else {
             //On enfonce le bouton
             //boutonAppartement.setBackgroundColor(getResources().getColor(R.color.themeViolet));
-            boutonAppartement.setBackgroundColor(getResources().getColor(R.color.themeOrange));
-            boutonAppartement.setTextColor(getResources().getColor(R.color.white));
+            boutonAppartement.setBackgroundColor(getResources().getColor(R.color.white));
+            boutonAppartement.setTextColor(getResources().getColor(R.color.themeOrange));
             appartementTag = true;
             Toast.makeText(this,"Appartement ajouté au filtre de recherche",Toast.LENGTH_SHORT).show();
         }

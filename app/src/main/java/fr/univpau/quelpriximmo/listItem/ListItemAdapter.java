@@ -27,14 +27,18 @@ public class ListItemAdapter extends ArrayAdapter<ListItem> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
         // Lookup view for data population
-        TextView addEmail = (TextView) convertView.findViewById(R.id.email);
-        TextView numMobile = (TextView) convertView.findViewById(R.id.mobile);
+        TextView valeur_fonciere = (TextView) convertView.findViewById(R.id.prix);
+        TextView type_local = (TextView) convertView.findViewById(R.id.type);
         TextView nombre_pieces_principales = (TextView) convertView.findViewById(R.id.nombre_pieces_principales);
+        TextView adresse = (TextView) convertView.findViewById(R.id.adresse);
+        TextView date = (TextView) convertView.findViewById(R.id.date);
 
         // Populate the data into the template view using the data object
-        addEmail.setText(listItem.valeur_fonciere);
-        numMobile.setText(listItem.type_local);
+        valeur_fonciere.setText(listItem.valeur_fonciere);
+        type_local.setText(listItem.type_local);
         nombre_pieces_principales.setText(listItem.nombre_pieces_principales);
+        adresse.setText(listItem.adresse);
+        date.setText(listItem.date_mutation);
         //tacheBox.isChecked();
 
         // Return the completed view to render on screen

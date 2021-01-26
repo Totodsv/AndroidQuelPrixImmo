@@ -24,28 +24,28 @@
         android:id="@+id/btnMaison"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Maison"
         android:onClick="maisonTag"
+        android:text="Maison"
         app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
         app:layout_constraintEnd_toStartOf="@+id/btnAppartement"
-        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintHorizontal_bias="0.732"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.645"
+        app:layout_constraintVertical_bias="0.484"
         tools:ignore="OnClick" />
 
     <Button
         android:id="@+id/btnAppartement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Appartement"
         android:onClick="appartementTag"
+        android:text="Appartement"
         app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintHorizontal_bias="0.671"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.643"
+        app:layout_constraintVertical_bias="0.524"
         tools:ignore="OnClick" />
 
     <EditText
@@ -57,10 +57,10 @@
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.028"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.842" />
+        app:layout_constraintVertical_bias="0.926" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -68,10 +68,10 @@
         android:layout_height="167dp"
         app:layout_constraintBottom_toTopOf="@+id/txtTypeBiens"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.003"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.29"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_launcher" />
 
     <TextView
@@ -83,10 +83,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnMaison"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.912" />
+        app:layout_constraintVertical_bias="0.551" />
 
     <TextView
         android:id="@+id/txtNbPieces"
@@ -97,10 +97,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.859" />
+        app:layout_constraintVertical_bias="0.774" />
 
     <TextView
         android:id="@+id/txtMinPieces"
@@ -109,10 +108,10 @@
         android:text="Min."
         app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.21"
+        app:layout_constraintHorizontal_bias="0.279"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNbPieces"
-        app:layout_constraintVertical_bias="0.372" />
+        app:layout_constraintVertical_bias="0.4" />
 
     <TextView
         android:id="@+id/minPieces"
@@ -126,7 +125,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/txtMinPieces"
         app:layout_constraintTop_toBottomOf="@+id/txtNbPieces"
-        app:layout_constraintVertical_bias="0.411" />
+        app:layout_constraintVertical_bias="0.4" />
 
     <TextView
         android:id="@+id/maxPieces"
@@ -136,10 +135,10 @@
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toEndOf="@+id/txtMaxPieces"
         app:layout_constraintTop_toBottomOf="@+id/txtNbPieces"
-        app:layout_constraintVertical_bias="0.352" />
+        app:layout_constraintVertical_bias="0.4" />
 
     <TextView
         android:id="@+id/txtMaxPieces"
@@ -148,10 +147,10 @@
         android:text="Max."
         app:layout_constraintBottom_toTopOf="@+id/rangeSlider2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.716"
+        app:layout_constraintHorizontal_bias="0.649"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNbPieces"
-        app:layout_constraintVertical_bias="0.395" />
+        app:layout_constraintVertical_bias="0.4" />
 
     <com.google.android.material.slider.RangeSlider
         android:id="@+id/rangeSlider2"
@@ -162,10 +161,9 @@
         android:valueTo="8.0"
         app:layout_constraintBottom_toTopOf="@+id/buttonRecherche"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.798"
+        app:layout_constraintVertical_bias="0.954"
         app:values="@array/initial_slider_values"
         tools:ignore="MissingConstraints,UnknownId" />
 
