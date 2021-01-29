@@ -64,9 +64,13 @@ public class Resultat extends AppCompatActivity {
         Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.size()));
 
         for(int i=0; i<arlText.size();i++){
-            //Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.get(i)));
-            String s = nf.format(Integer.parseInt((String.valueOf(arlText.get(i).get("valeur_fonciere")))));
-            valeur_fonciere=s+" €";
+            //Cas des prix avec centimes
+            Double virgule=Double.parseDouble((String) arlText.get(i).get("valeur_fonciere"));
+            int sansVirgule = (int) Math.round(virgule);
+            Log.i("Prix", String.valueOf(sansVirgule));
+            String s = nf.format(Integer.parseInt((String.valueOf(sansVirgule))));
+            valeur_fonciere=s+" €"; //Ajout du symbole € après le prix
+
             //valeur_fonciere=String.valueOf(arlText.get(i).get("valeur_fonciere"))+" €";
             type_local=String.valueOf(arlText.get(i).get("type_local"))+" / ";
             nombre_pieces_principales=String.valueOf(arlText.get(i).get("nombre_pieces_principales"))+"p";

@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         textMinP = findViewById(R.id.minPieces);
         textMaxP = findViewById(R.id.maxPieces);
         rayonValue="500";//Valeur par défaut
+        min="1";
+        max="8";
         try {
             if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
                 ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
