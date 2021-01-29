@@ -1,11 +1,13 @@
 package fr.univpau.quelpriximmo;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -69,6 +71,13 @@ public class Resultat extends AppCompatActivity {
             ListItem nouvelleMaison = new ListItem(valeur_fonciere,type_local,nombre_pieces_principales,adresse,date_mutation);
             this.adapter.add(nouvelleMaison);
         }
+    }
+
+    public void goStatistiques(View view) { //Changement d'état d'un bouton sélectionné/déselectionnée
+        Intent i = new Intent(); /* Intent de type direct */
+        i.setClass(this, Statistiques.class);
+        //PUT LES VALEURS NECESSAIRES POUR FAIRE LES STATS
+        this.startActivity(i); /* Poussé sur le bus */
     }
 
     @Override
