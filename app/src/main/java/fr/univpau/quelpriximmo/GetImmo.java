@@ -45,6 +45,7 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
 
         //changement url
         String rayon = MainActivity.getRayon();
+        //String rayon = Preference.getRayon();
         String latitude = MainActivity.getLatitude();
         String longitute = MainActivity.getLongitude();
 

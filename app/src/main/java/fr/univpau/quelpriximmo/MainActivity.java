@@ -1,17 +1,22 @@
 package fr.univpau.quelpriximmo;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +29,8 @@ import com.google.android.material.slider.Slider;
 import java.util.List;
 
 import fr.univpau.quelpriximmo.GPS.GpsTracker;
+
+import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         slider.addOnSliderTouchListener(touchListener);
         textMinP = findViewById(R.id.minPieces);
         textMaxP = findViewById(R.id.maxPieces);
+        rayonValue="500";//Valeur par défaut
         try {
             if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
                 ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
@@ -77,6 +85,32 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.pref){
+            Intent i = new Intent(); /* Intent de type direct */
+            i.setClass(this, Preference.class);
+            /* Poussé sur le bus */
+            ((Activity) this).startActivityForResult(i,0);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK){
+            String value = (String) data.getExtras().getString("Result");
+            rayonValue=value;
+        }
+    }
+
 
 
     public void recherche(View view){
@@ -93,14 +127,14 @@ public class MainActivity extends AppCompatActivity {
         // envoi des valeurs
         tvRayon = (EditText) findViewById(R.id.Rayon);
 
-        rayonValue = tvRayon.getText().toString();
+        //rayonValue = tvRayon.getText().toString();
         LatitudeValue = String.valueOf(tLatitudeValue);
         longitudeValue = String.valueOf(tlongitudeValue);
 
         RangeSlider rangeSlider = findViewById(R.id.rangeSlider2);
         pieceMinimum= rangeSlider.getValues().get(0);
         pieceMaximum= rangeSlider.getValues().get(1);
-
+        Log.i(TAG, "RAYON "+rayonValue);
         new GetImmo(this).execute();
     }
 
@@ -117,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
             //On enfonce le bouton
             boutonMaison.setBackgroundColor(getResources().getColor(R.color.white));
             boutonMaison.setTextColor(getResources().getColor(R.color.themeOrange));
-            //boutonMaison.getBackground().setColorFilter(getResources().getColor(R.color.themeOrange), PorterDuff.Mode.MULTIPLY);
             maisonTag = true;
             Toast.makeText(this,"Maison ajoutée au filtre de recherche",Toast.LENGTH_SHORT).show();
         }
@@ -126,7 +159,6 @@ public class MainActivity extends AppCompatActivity {
     public void appartementTag(View view) {
         if (appartementTag == true) {
             //On reset le bouton
-            //boutonAppartement.setBackgroundColor(getResources().getColor(R.color.themeOrange));
             boutonAppartement.setBackgroundColor(getResources().getColor(R.color.themeOrange));
             boutonAppartement.setTextColor(getResources().getColor(R.color.white));
             appartementTag = false;
@@ -134,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             //On enfonce le bouton
-            //boutonAppartement.setBackgroundColor(getResources().getColor(R.color.themeViolet));
             boutonAppartement.setBackgroundColor(getResources().getColor(R.color.white));
             boutonAppartement.setTextColor(getResources().getColor(R.color.themeOrange));
             appartementTag = true;
