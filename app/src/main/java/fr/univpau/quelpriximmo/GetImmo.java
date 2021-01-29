@@ -45,7 +45,6 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
 
         //changement url
         String rayon = MainActivity.getRayon();
-        //String rayon = Preference.getRayon();
         String latitude = MainActivity.getLatitude();
         String longitute = MainActivity.getLongitude();
 
@@ -67,11 +66,11 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
                 // Getting JSON Array node
                 JSONArray features = jsonObj.getJSONArray("features");
                 //Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + features.length());
-                // looping through All Contacts
+                // looping through All features
                 for (int i = 0; i < features.length(); i++) {
                     JSONObject c = features.getJSONObject(i);
 
-                    // Phone node is JSON Object
+                    // properties node is JSON Object
 
                     JSONObject properties = c.getJSONObject("properties");
                     //Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + i);

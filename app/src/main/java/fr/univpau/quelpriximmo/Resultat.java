@@ -28,6 +28,7 @@ public class Resultat extends AppCompatActivity {
     // Construct the data source
     ArrayList<ListItem> arrayOfItems = new ArrayList<ListItem>();
     ListItemAdapter adapter;
+    TextView nombreResultats;
     String valeur_fonciere;
     String type_local;
     String nombre_pieces_principales;
@@ -38,6 +39,7 @@ public class Resultat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resultat);
+        nombreResultats=findViewById(R.id.titreRes);
         // Create the adapter to convert the array to views
         adapter = new ListItemAdapter(this, arrayOfItems);
         // Attach the adapter to a ListView
@@ -46,9 +48,10 @@ public class Resultat extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         ArrayList<HashMap> arlText = (ArrayList<HashMap>)bundle.getSerializable("Valeur");
-
+        // Add resultats
+        nombreResultats.setText(String.valueOf(arlText.size())+" biens ont été trouvé");
         // Add item to adapter
-        //Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText));
+
         Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.size()));
 
         for(int i=0; i<arlText.size();i++){

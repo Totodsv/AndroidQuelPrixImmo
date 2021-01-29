@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
     private GpsTracker gpsTracker;
     private Button boutonMaison, boutonAppartement;
-    private  static EditText tvRayon;
     private static  String rayonValue, LatitudeValue, longitudeValue ;
     private double tLatitudeValue, tlongitudeValue;
     private static  Float pieceMinimum, pieceMaximum;
@@ -123,10 +122,6 @@ public class MainActivity extends AppCompatActivity {
         }else{
             gpsTracker.showSettingsAlert();
         }
-
-        // envoi des valeurs
-        tvRayon = (EditText) findViewById(R.id.Rayon);
-
         //rayonValue = tvRayon.getText().toString();
         LatitudeValue = String.valueOf(tLatitudeValue);
         longitudeValue = String.valueOf(tlongitudeValue);
@@ -141,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
     public void maisonTag(View view) {
         if (maisonTag == true) {
             //On reset le bouton
-
             boutonMaison.setBackgroundColor(getResources().getColor(R.color.themeOrange));
             boutonMaison.setTextColor(getResources().getColor(R.color.white));
             maisonTag = false;
