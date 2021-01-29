@@ -63,35 +63,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private final RangeSlider.OnSliderTouchListener touchListener =
-            new RangeSlider.OnSliderTouchListener() {
-                @Override
-                public void onStartTrackingTouch(@NonNull RangeSlider slider) {
-                    RangeSlider valueTracker = findViewById(R.id.rangeSlider2);
-                    float minP= valueTracker.getValues().get(0);
-                    float maxP=valueTracker.getValues().get(1);
-                    textMinP.setText(String.valueOf(minP));
-                    textMaxP.setText(String.valueOf(maxP));
-                }
-
-                @Override
-                public void onStopTrackingTouch(@NonNull RangeSlider slider) {
-                    RangeSlider valueTracker2 = findViewById(R.id.rangeSlider2);
-                    float minP= valueTracker2.getValues().get(0);
-                    float maxP=valueTracker2.getValues().get(1);
-                    textMinP.setText(String.valueOf(minP));
-                    textMaxP.setText(String.valueOf(maxP));
-                }
-            };
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) { //Création du menu "..." pour l'activité Preference
         getMenuInflater().inflate(R.menu.menu,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { //Sélection dans le sous-menu "..."
         if(item.getItemId()==R.id.pref){
             Intent i = new Intent(); /* Intent de type direct */
             i.setClass(this, Preference.class);
@@ -102,18 +81,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) { // Récupération du rayon choisi depuis Preference
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK){
             String value = (String) data.getExtras().getString("Result");
             rayonValue=value;
+            Toast.makeText(this,"Rayon de "+value+"m ajouté au filtre de recherche",Toast.LENGTH_SHORT).show();
         }
     }
 
-
-
-    public void recherche(View view){
-
+    public void recherche(View view){ //Lance la recherche selon les filtres choisis
         // getLocation
         gpsTracker = new GpsTracker(MainActivity.this);
         if(gpsTracker.canGetLocation()){
@@ -133,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         new GetImmo(this).execute();
     }
 
-    public void maisonTag(View view) {
+    public void maisonTag(View view) { //Changement d'état d'un bouton sélectionné/déselectionnée
         if (maisonTag == true) {
             //On reset le bouton
             boutonMaison.setBackgroundColor(getResources().getColor(R.color.themeOrange));
@@ -150,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void appartementTag(View view) {
+    public void appartementTag(View view) { //Changement d'état d'un bouton sélectionné/déselectionnée
         if (appartementTag == true) {
             //On reset le bouton
             boutonAppartement.setBackgroundColor(getResources().getColor(R.color.themeOrange));
@@ -166,6 +143,27 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"Appartement ajouté au filtre de recherche",Toast.LENGTH_SHORT).show();
         }
     }
+
+    private final RangeSlider.OnSliderTouchListener touchListener =
+            new RangeSlider.OnSliderTouchListener() { //Tracking de la touchbar pour afficher les pièces à l'utilisateur
+                @Override
+                public void onStartTrackingTouch(@NonNull RangeSlider slider) {
+                    RangeSlider valueTracker = findViewById(R.id.rangeSlider2);
+                    float minP= valueTracker.getValues().get(0);
+                    float maxP=valueTracker.getValues().get(1);
+                    textMinP.setText(String.valueOf(minP));
+                    textMaxP.setText(String.valueOf(maxP));
+                }
+
+                @Override
+                public void onStopTrackingTouch(@NonNull RangeSlider slider) {
+                    RangeSlider valueTracker2 = findViewById(R.id.rangeSlider2);
+                    float minP= valueTracker2.getValues().get(0);
+                    float maxP=valueTracker2.getValues().get(1);
+                    textMinP.setText(String.valueOf(minP));
+                    textMaxP.setText(String.valueOf(maxP));
+                }
+            };
 
     public static String getRayon() {
         return rayonValue;

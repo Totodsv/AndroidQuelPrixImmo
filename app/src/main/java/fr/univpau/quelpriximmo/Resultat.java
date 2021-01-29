@@ -49,9 +49,14 @@ public class Resultat extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         ArrayList<HashMap> arlText = (ArrayList<HashMap>)bundle.getSerializable("Valeur");
         // Add resultats
-        nombreResultats.setText(String.valueOf(arlText.size())+" biens ont été trouvé");
-        // Add item to adapter
+        if(arlText.size()>1){
+            nombreResultats.setText(String.valueOf(arlText.size())+" biens ont été trouvés");
+        }
+        else{
+            nombreResultats.setText(String.valueOf(arlText.size())+" bien a été trouvé");
+        }
 
+        // Add item to adapter
         Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.size()));
 
         for(int i=0; i<arlText.size();i++){

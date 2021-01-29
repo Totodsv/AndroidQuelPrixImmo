@@ -20,12 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Resultat">
+        <activity android:name=".Resultat" android:label="Liste des resultats">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Preference">
+        <activity android:name=".Preference" android:label="Préférences">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
