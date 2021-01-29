@@ -17,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -57,15 +58,18 @@ public class Resultat extends AppCompatActivity {
         else{
             nombreResultats.setText(String.valueOf(arlText.size())+" bien a été trouvé");
         }
+        NumberFormat nf = NumberFormat.getInstance(); //Pour espacer les nombres tout les 3 chiffres
 
         // Add item to adapter
         Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.size()));
 
         for(int i=0; i<arlText.size();i++){
             //Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.get(i)));
-            valeur_fonciere=String.valueOf(arlText.get(i).get("valeur_fonciere"));
-            type_local=String.valueOf(arlText.get(i).get("type_local"));
-            nombre_pieces_principales=String.valueOf(arlText.get(i).get("nombre_pieces_principales"));
+            String s = nf.format(Integer.parseInt((String.valueOf(arlText.get(i).get("valeur_fonciere")))));
+            valeur_fonciere=s+" €";
+            //valeur_fonciere=String.valueOf(arlText.get(i).get("valeur_fonciere"))+" €";
+            type_local=String.valueOf(arlText.get(i).get("type_local"))+" / ";
+            nombre_pieces_principales=String.valueOf(arlText.get(i).get("nombre_pieces_principales"))+"p";
             adresse=String.valueOf(arlText.get(i).get("adresse"));
             date_mutation=String.valueOf(arlText.get(i).get("date_mutation"));
             ListItem nouvelleMaison = new ListItem(valeur_fonciere,type_local,nombre_pieces_principales,adresse,date_mutation);
