@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     private GpsTracker gpsTracker;
     private Button boutonMaison, boutonAppartement;
-    private static  String rayonValue, LatitudeValue, longitudeValue ;
+    private static  String rayonValue, LatitudeValue, longitudeValue, min, max ;
     private double tLatitudeValue, tlongitudeValue;
     private static  Float pieceMinimum, pieceMaximum;
     TextView textMinP, textMaxP;
@@ -151,8 +151,12 @@ public class MainActivity extends AppCompatActivity {
                     RangeSlider valueTracker = findViewById(R.id.rangeSlider2);
                     float minP= valueTracker.getValues().get(0);
                     float maxP=valueTracker.getValues().get(1);
-                    textMinP.setText(String.valueOf(minP));
-                    textMaxP.setText(String.valueOf(maxP));
+                    min=String.valueOf(minP);
+                    max=String.valueOf(maxP);
+                    textMinP.setText(min.substring(0,1));
+                    textMaxP.setText(max.substring(0,1));
+                    //textMinP.setText(String.valueOf(minP));
+                    //textMaxP.setText(String.valueOf(maxP));
                 }
 
                 @Override
@@ -160,10 +164,65 @@ public class MainActivity extends AppCompatActivity {
                     RangeSlider valueTracker2 = findViewById(R.id.rangeSlider2);
                     float minP= valueTracker2.getValues().get(0);
                     float maxP=valueTracker2.getValues().get(1);
-                    textMinP.setText(String.valueOf(minP));
-                    textMaxP.setText(String.valueOf(maxP));
+                    min=String.valueOf(minP);
+                    max=String.valueOf(maxP);
+                    textMinP.setText(min.substring(0,1));
+                    textMaxP.setText(max.substring(0,1));
+                    //textMinP.setText(String.valueOf(minP));
+                    //textMaxP.setText(String.valueOf(maxP));
                 }
             };
+
+    @Override
+    protected void onRestoreInstanceState (Bundle savedInstanceState) {
+        super.onRestoreInstanceState (savedInstanceState);
+        // Restore our variable by key
+        //count = savedInstanceState.getInt (“Count”);
+        // We can also set the default value after the key, separated by commas
+        rayonValue=savedInstanceState.getString("Rayon");
+        min=savedInstanceState.getString("Minimum");
+        max=savedInstanceState.getString("Maximum");
+        textMinP.setText(min.substring(0,1));
+        textMaxP.setText(max.substring(0,1));
+        maisonTag=savedInstanceState.getBoolean("boutonMaison");
+        appartementTag=savedInstanceState.getBoolean("boutonAppart");
+
+        if (maisonTag == true) {
+            //On restaure le bouton enfoncé
+            boutonMaison.setBackgroundColor(getResources().getColor(R.color.white));
+            boutonMaison.setTextColor(getResources().getColor(R.color.themeOrange));
+        }
+        else {
+            //On restaure le bouton initial
+            boutonMaison.setBackgroundColor(getResources().getColor(R.color.themeOrange));
+            boutonMaison.setTextColor(getResources().getColor(R.color.white));
+        }
+
+        if (appartementTag == true) {
+            //On restaure le bouton enfoncé
+            boutonAppartement.setBackgroundColor(getResources().getColor(R.color.white));
+            boutonAppartement.setTextColor(getResources().getColor(R.color.themeOrange));
+        }
+        else {
+            //On restaure le bouton initial
+            boutonAppartement.setBackgroundColor(getResources().getColor(R.color.themeOrange));
+            boutonAppartement.setTextColor(getResources().getColor(R.color.white));
+        }
+    }
+    @Override
+    protected void onSaveInstanceState (Bundle outState) {
+        super.onSaveInstanceState (outState);
+        // Write the variable with the key in the Bundle
+        //outState.putInt (“Count”, count);
+        //Pour save nos données en landscape
+        //Les boutons enfoncés ou non
+        outState.putBoolean("boutonMaison",maisonTag);
+        outState.putBoolean("boutonAppart",appartementTag);
+        //Le nombre de pièces
+        outState.putString("Minimum",min);
+        outState.putString("Maximum",max);
+        outState.putString("Rayon",rayonValue);
+    }
 
     public static String getRayon() {
         return rayonValue;
