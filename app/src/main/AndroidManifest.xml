@@ -30,7 +30,7 @@
                 <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Statistiques" android:label="Statistiques de la recherche">
+        <activity android:name=".Statistiques" android:label="Statistiques de la recherche" android:configChanges="orientation" android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
