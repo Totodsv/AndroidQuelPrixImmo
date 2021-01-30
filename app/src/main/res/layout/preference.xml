@@ -11,6 +11,9 @@
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:inputType="number"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_above="@id/fluidSlider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,9 +23,20 @@
         android:id="@+id/fluidSlider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
         app:bar_color="@color/themeViolet"
-        app:initial_position="500"
+        app:end_text="2000"
+        app:initial_position="0.25"
+        app:start_text="1" />
+
+    <Button
+        android:id="@+id/btnConfirmer"
+        android:onClick="confirmer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Confirmer"
         />
 
 </RelativeLayout>
