@@ -1,5 +1,6 @@
 package fr.univpau.quelpriximmo;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ import java.util.List;
 import fr.univpau.quelpriximmo.listItem.ListItem;
 import fr.univpau.quelpriximmo.listItem.ListItemAdapter;
 
+import static android.content.ContentValues.TAG;
+
 public class Resultat extends AppCompatActivity {
 
     // Construct the data source
@@ -42,6 +45,7 @@ public class Resultat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resultat);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         nombreResultats=findViewById(R.id.titreRes);
         // Create the adapter to convert the array to views
         adapter = new ListItemAdapter(this, arrayOfItems);
@@ -86,6 +90,12 @@ public class Resultat extends AppCompatActivity {
         i.setClass(this, Statistiques.class);
         //PUT LES VALEURS NECESSAIRES POUR FAIRE LES STATS
         this.startActivity(i); /* Poussé sur le bus */
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() { // Simule un back depuis la flèche de navigation
+        super.onBackPressed();
+        return true;
     }
 
     @Override

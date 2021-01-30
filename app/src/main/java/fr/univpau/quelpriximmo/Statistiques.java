@@ -10,5 +10,12 @@ public class Statistiques extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.statistiques);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() { // Simule un back depuis la flèche de navigation
+        super.onBackPressed();
+        return true;
     }
 }

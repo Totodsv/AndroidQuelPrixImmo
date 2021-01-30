@@ -25,6 +25,7 @@ public class Preference extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.preference);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tvRayon=findViewById(R.id.rayon);
         tvRayon.setText(MainActivity.getRayon());
     }
@@ -43,4 +44,13 @@ public class Preference extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    @Override
+    public boolean onSupportNavigateUp() { // Simule un back depuis la flèche de navigation
+        Intent resultInt = new Intent();
+        resultInt.putExtra("Result", tvRayon.getText().toString());
+        setResult(Activity.RESULT_OK, resultInt);
+        Log.i(TAG, "RAYON "+tvRayon.getText().toString());
+        super.onBackPressed();
+        return true;
+    }
 }
