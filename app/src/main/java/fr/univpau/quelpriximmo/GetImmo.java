@@ -67,9 +67,15 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
 
                 // Getting JSON Array node
                 JSONArray features = jsonObj.getJSONArray("features");
-                //Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + features.length());
+                Log.i(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + features.length());
                 // looping through All features
-                for (int i = 0; i < features.length(); i++) {
+                int j = 0;
+                if (features.length()>2500){
+                    j=2500;
+                }else{
+                    j = features.length();
+                }
+                for (int i = 0; i < j; i++) {
                     JSONObject c = features.getJSONObject(i);
 
                     // properties node is JSON Object

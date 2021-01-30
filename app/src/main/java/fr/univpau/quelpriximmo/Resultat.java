@@ -65,13 +65,13 @@ public class Resultat extends AppCompatActivity {
         NumberFormat nf = NumberFormat.getInstance(); //Pour espacer les nombres tout les 3 chiffres
 
         // Add item to adapter
-        Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.size()));
+        //Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.size()));
 
         for(int i=0; i<arlText.size();i++){
             //Cas des prix avec centimes
             Double virgule=Double.parseDouble((String) arlText.get(i).get("valeur_fonciere"));
             int sansVirgule = (int) Math.round(virgule);
-            Log.i("Prix", String.valueOf(sansVirgule));
+            //Log.i("Prix", String.valueOf(sansVirgule));
             String s = nf.format(Integer.parseInt((String.valueOf(sansVirgule))));
             valeur_fonciere=s+" €"; //Ajout du symbole € après le prix
 
