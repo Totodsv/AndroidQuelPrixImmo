@@ -29,6 +29,7 @@ import com.google.android.material.slider.Slider;
 import java.util.List;
 
 import fr.univpau.quelpriximmo.GPS.GpsTracker;
+import fr.univpau.quelpriximmo.Orientation.OrientationUtils;
 
 import static android.content.ContentValues.TAG;
 
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK){
             String value = (String) data.getExtras().getString("Result");
             rayonValue=value;
-            Toast.makeText(this,"Rayon de "+value+"m ajouté au filtre de recherche",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Rayon de "+rayonValue+"m ajouté au filtre de recherche",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         pieceMinimum= rangeSlider.getValues().get(0);
         pieceMaximum= rangeSlider.getValues().get(1);
         Log.i(TAG, "RAYON "+rayonValue);
+        OrientationUtils.lockOrientation(this);
         new GetImmo(this).execute();
     }
 
@@ -223,6 +225,36 @@ public class MainActivity extends AppCompatActivity {
         outState.putString("Minimum",min);
         outState.putString("Maximum",max);
         outState.putString("Rayon",rayonValue);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        OrientationUtils.unlockOrientation(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        OrientationUtils.unlockOrientation(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        OrientationUtils.unlockOrientation(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        OrientationUtils.unlockOrientation(this);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        OrientationUtils.unlockOrientation(this);
     }
 
     public static String getRayon() {

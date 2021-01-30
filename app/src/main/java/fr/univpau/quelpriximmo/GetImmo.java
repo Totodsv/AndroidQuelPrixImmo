@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import fr.univpau.quelpriximmo.Http.HttpHandler;
+import fr.univpau.quelpriximmo.Orientation.OrientationUtils;
 
 import static android.content.ContentValues.TAG;
 
@@ -40,6 +41,7 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... arg0) {
+
         Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + MainActivity.getpieceMaximum());
         HttpHandler sh = new HttpHandler();
 
@@ -82,13 +84,14 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
                     String nature_mutation;
                     String verifMaison = "rien";
                     String verifAppartement = "rien";
-                    String numero_voie =properties.getString("numero_voie");
-                    String type_voie =properties.getString("type_voie");
-                    String voie = properties.getString("voie");
+                    String numero_voie = "rien";
+                    String type_voie= "rien";
+                    String voie= "rien";
+                    String adresse = "rien";
                     String date_mutation_US = properties.getString("date_mutation");
                     int pieceMini = MainActivity.getpieceMinimum();
                     int pieceMaxi = MainActivity.getpieceMaximum();
-                    String adresse = numero_voie+" "+type_voie+" "+voie;
+
                     String[] arr = date_mutation_US.split("-");
                     String date_mutation = arr[2] + "/" + arr[1] + "/" + arr[0];
 
@@ -100,10 +103,9 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
 
                     }
                     if (!properties.isNull("nombre_pieces_principales")) {
-                        if(pieceMini <= Integer.parseInt(properties.getString("nombre_pieces_principales")) &&  pieceMaxi >= Integer.parseInt(properties.getString("nombre_pieces_principales"))) {
+                        if (pieceMini <= Integer.parseInt(properties.getString("nombre_pieces_principales")) && pieceMaxi >= Integer.parseInt(properties.getString("nombre_pieces_principales"))) {
                             nombre_pieces_principales = properties.getString("nombre_pieces_principales");
-                        }
-                        else {
+                        } else {
                             nombre_pieces_principales = "inconnu";
                         }
                     } else {
@@ -115,6 +117,24 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
                     } else {
                         nature_mutation = "inconnu";
                     }
+                    if (!properties.isNull("numero_voie")) {
+
+                        numero_voie = properties.getString("numero_voie");
+                    } else {
+                        adresse = "inconnu";
+                    }
+                    if (!properties.isNull("type_voie")) {
+
+                        type_voie = properties.getString("type_voie");
+                    } else {
+                        adresse = "inconnu";
+                    }
+                    if (!properties.isNull("voie")) {
+
+                        voie = properties.getString("voie");
+                    } else {
+                        adresse = "inconnu";
+                    }
                     // tmp hash map for single contact
                     HashMap<String, String> contact = new HashMap<>();
 
@@ -122,21 +142,24 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
                     contact.put("valeur_fonciere", valeur_fonciere);
                     contact.put("type_local", type_local);
                     contact.put("nombre_pieces_principales", nombre_pieces_principales);
-                    contact.put("adresse", adresse);
                     contact.put("date_mutation", date_mutation);
 
-                    if(MainActivity.getMaisonTag()== true){
-                        verifMaison="Maison";
+                    if (MainActivity.getMaisonTag() == true) {
+                        verifMaison = "Maison";
                     }
-                    if(MainActivity.getAppartementTag()== true){
-                        verifAppartement="Appartement";
+                    if (MainActivity.getAppartementTag() == true) {
+                        verifAppartement = "Appartement";
                     }
 
                     // adding contact to contact list
-                    if(!nombre_pieces_principales.equals("inconnu")) {
-                        if (verifMaison.equals(type_local) || verifAppartement.equals(type_local)) {
-                            if (nature_mutation.equals("Vente")) {
-                                contactList.add(contact);
+                    if (!adresse.equals("inconnu")) {
+                        adresse = numero_voie+ " " + type_voie+ " " + voie;
+                        contact.put("adresse", adresse);
+                        if (!nombre_pieces_principales.equals("inconnu")) {
+                            if (verifMaison.equals(type_local) || verifAppartement.equals(type_local)) {
+                                if (nature_mutation.equals("Vente")) {
+                                    contactList.add(contact);
+                                }
                             }
                         }
                     }
@@ -154,6 +177,7 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
+        OrientationUtils.unlockOrientation(this.screen);
         if(progress.isShowing()) progress.dismiss();
         Intent i = new Intent(); /* Intent de type direct */
         i.setClass(screen, Resultat.class);
