@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +42,7 @@ public class Resultat extends AppCompatActivity {
     String nombre_pieces_principales;
     String adresse;
     String date_mutation;
+    int image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class Resultat extends AppCompatActivity {
         setContentView(R.layout.resultat);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         nombreResultats=findViewById(R.id.titreRes);
+        //image=findViewById(R.id.imgMaisonOuAppart);
         // Create the adapter to convert the array to views
         adapter = new ListItemAdapter(this, arrayOfItems);
         // Attach the adapter to a ListView
@@ -58,16 +62,29 @@ public class Resultat extends AppCompatActivity {
         // Add resultats
         if(arlText.size()>1){
             nombreResultats.setText(String.valueOf(arlText.size())+" biens ont été trouvés");
+            nombreResultats.setGravity(Gravity.CENTER_VERTICAL);
         }
         else{
             nombreResultats.setText(String.valueOf(arlText.size())+" bien a été trouvé");
+            nombreResultats.setGravity(Gravity.CENTER_HORIZONTAL);
         }
         NumberFormat nf = NumberFormat.getInstance(); //Pour espacer les nombres tout les 3 chiffres
 
         // Add item to adapter
         //Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.size()));
-
+        int[] images={
+                R.drawable.house,
+                R.drawable.building
+        };
         for(int i=0; i<arlText.size();i++){
+            //Image Maison ou Appartement
+            Log.i("AAAAAAAAAAAAAA ", String.valueOf(arlText.get(i).get("type_local")));
+            if(arlText.get(i).get("type_local").equals("Maison")){
+                image=images[0];
+            }
+            else{
+                image=images[1];
+            }
             //Cas des prix avec centimes
             Double virgule=Double.parseDouble((String) arlText.get(i).get("valeur_fonciere"));
             int sansVirgule = (int) Math.round(virgule);
@@ -80,7 +97,7 @@ public class Resultat extends AppCompatActivity {
             nombre_pieces_principales=String.valueOf(arlText.get(i).get("nombre_pieces_principales"))+"p";
             adresse=String.valueOf(arlText.get(i).get("adresse"));
             date_mutation=String.valueOf(arlText.get(i).get("date_mutation"));
-            ListItem nouvelleMaison = new ListItem(valeur_fonciere,type_local,nombre_pieces_principales,adresse,date_mutation);
+            ListItem nouvelleMaison = new ListItem(image, valeur_fonciere,type_local,nombre_pieces_principales,adresse,date_mutation);
             this.adapter.add(nouvelleMaison);
         }
     }

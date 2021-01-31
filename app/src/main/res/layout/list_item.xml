@@ -1,47 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints">
-        <TextView
-            android:id="@+id/prix"
+        tools:ignore="MissingConstraints"
+        android:padding="20dp"
+        android:background="@color/white">
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="2dip"
-            android:textColor="@color/teal_700" />
-        <TextView
-            android:id="@+id/adresse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#5d5d5d"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/nombre_pieces_principales"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#5d5d5d"
-                android:textStyle="bold" />
-        </LinearLayout>
+            android:orientation="horizontal"
+            android:background="@color/themeWhite"
+            android:weightSum="1">
 
+            <ImageView
+                android:id="@+id/imgMaisonOuAppart"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/prix"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="2dip"
+                    android:text="PRIX"
+                    android:padding="1dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic"
+                    android:background="@color/themeOrange"
+                    android:clickable="true"
+                    android:textColor="#ffffff" />
+                <LinearLayout
+                    android:id="@+id/list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/adresse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4 rue de l'adresse"/>
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00/00/0000"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#5d5d5d"
+                            android:textStyle="bold"
+                            android:text="Maison/"/>
+                        <TextView
+                            android:id="@+id/nombre_pieces_principales"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#5d5d5d"
+                            android:textStyle="bold"
+                            android:text="Xp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
