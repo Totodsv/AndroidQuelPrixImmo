@@ -11,7 +11,8 @@
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
         android:layout_above="@id/rayon"
-        android:text="@string/txtPref"/>
+        android:text="@string/txtPref"
+        android:padding="50dp"/>
 
     <EditText
         android:id="@+id/rayon"
@@ -35,15 +36,30 @@
         app:bar_color="@color/themeViolet"
         app:end_text="2000"
         app:start_text="1" />
-
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_alignParentBottom="true"
+    android:layout_centerInParent="true"
+    android:weightSum="1">
     <Button
         android:id="@+id/btnConfirmer"
-        android:onClick="confirmer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="right"
+        android:onClick="confirmer"
         android:text="Confirmer"
-        />
+        android:layout_weight="0.4"/>
+
+    <Button
+        android:id="@+id/btnDefaut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="defaut"
+        android:text="Rétablir"
+        android:layout_weight="0.6"/>
+</LinearLayout>
+
 
 </RelativeLayout>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -69,6 +70,14 @@ protected void onStart() {
 
     public void confirmer(View view){
         sauvegarder();
+    }
+
+    public void defaut(View view){
+        tvRayon.setText("499");
+        slider.setPosition((float) (((Float.parseFloat(tvRayon.getText().toString())*100)/2000)*0.01)); //Met la position en pourcentage du rayon sur 2000 (valeur max du slider)
+        slider.setBubbleText(tvRayon.getText().toString());//Ecris dans la bulle de texte la valeur du rayon
+        Toast.makeText(this,"Paramètres réinitialisés par défaut",Toast.LENGTH_SHORT).show();
+
     }
 
     public void sauvegarder(){

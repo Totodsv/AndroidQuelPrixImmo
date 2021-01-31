@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/rayon"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="-43dp"
+        android:layout_toStartOf="@+id/rayon"
+        android:padding="5dp"
+        android:text="@string/txtPref" />
+
+    <EditText
+        android:id="@+id/rayon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/fluidSlider"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="-32dp"
+        android:inputType="number"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.ramotion.fluidslider.FluidSlider
+        android:id="@+id/fluidSlider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="78dp"
+        app:bar_color="@color/themeViolet"
+        app:end_text="2000"
+        app:start_text="1" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:weightSum="1">
+        <Button
+            android:id="@+id/btnConfirmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:onClick="confirmer"
+            android:text="Confirmer"
+            android:layout_weight="0.4"/>
+
+        <Button
+            android:id="@+id/btnDefaut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="defaut"
+            android:text="Rétablir"
+            android:layout_weight="0.6"/>
+    </LinearLayout>
+
+</RelativeLayout>

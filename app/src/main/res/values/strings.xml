@@ -9,5 +9,5 @@
         <item>8.0</item>
     </array>
     <string name="titreResultat">X biens ont été trouvés</string>
-    <string name="txtPref">Veuillez indiquer la valeur du rayon en mètres : </string>
+    <string name="txtPref">Veuillez indiquer la valeur du rayon en mètres (500m par défaut) : </string>
 </resources>
