@@ -2,6 +2,7 @@ package fr.univpau.quelpriximmo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.util.Log;
@@ -27,6 +28,7 @@ import static android.content.ContentValues.TAG;
 
 public class Preference extends AppCompatActivity {
 
+    SharedPreferences pref;
     private static EditText tvRayon;
     FluidSlider slider;
     Button boutonConfirmer;
@@ -43,36 +45,42 @@ public class Preference extends AppCompatActivity {
         setupSlider();
     }
 
-//METTRE LA PREFERENCE PERSISTENTE MEME QUAND APPLI CLOSE
-    @Override
-    protected void onStart() {
-        super.onStart();
+
+@Override
+protected void onStart() {
+    super.onStart();
+    Log.i("TAG", "Lancement de l'activité");
+    pref = getPreferences(Activity.MODE_PRIVATE);
+    if (pref.contains("memoire")) {
+        tvRayon.setText(pref.getString("memoire", "unknown"));
     }
+}
 
     @Override
     public void onBackPressed() {
-        Intent resultInt = new Intent();
-        resultInt.putExtra("Result", tvRayon.getText().toString());
-        setResult(Activity.RESULT_OK, resultInt);
-        Log.i(TAG, "RAYON "+tvRayon.getText().toString());
-        super.onBackPressed();
+        sauvegarder();
     }
 
     @Override
     public boolean onSupportNavigateUp() { // Simule un back depuis la flèche de navigation
-        Intent resultInt = new Intent();
-        resultInt.putExtra("Result", tvRayon.getText().toString());
-        setResult(Activity.RESULT_OK, resultInt);
-        Log.i(TAG, "RAYON "+tvRayon.getText().toString());
-        super.onBackPressed();
+        sauvegarder();
         return true;
     }
 
     public void confirmer(View view){
+        sauvegarder();
+    }
+
+    public void sauvegarder(){
         Intent resultInt = new Intent();
         resultInt.putExtra("Result", tvRayon.getText().toString());
         setResult(Activity.RESULT_OK, resultInt);
         Log.i(TAG, "RAYON "+tvRayon.getText().toString());
+        //Sauvegarder les préférences de l'utilisateur même quand l'application est détruite
+        SharedPreferences.Editor ed = pref.edit();
+        ed.putString("memoire", tvRayon.getText().toString());
+        ed.commit();
+
         super.onBackPressed();
     }
 
@@ -84,6 +92,8 @@ public class Preference extends AppCompatActivity {
 
         slider.setStartText(String.valueOf(min));
         slider.setEndText(String.valueOf(max));
+        slider.setPosition((float) (((Float.parseFloat(tvRayon.getText().toString())*100)/max)*0.01)); //Met la position en pourcentage du rayon sur 2000 (valeur max du slider)
+        slider.setBubbleText(tvRayon.getText().toString());//Ecris dans la bulle de texte la valeur du rayon
         // Or Java 8 lambda
         slider.setPositionListener(pos -> {
             //final String value = String.valueOf( min + (total  * pos) );

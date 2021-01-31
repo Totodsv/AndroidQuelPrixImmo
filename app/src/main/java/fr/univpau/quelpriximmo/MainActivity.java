@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity {
 
+    SharedPreferences pref;
     private GpsTracker gpsTracker;
     private Button boutonMaison, boutonAppartement;
     private static  String rayonValue, LatitudeValue, longitudeValue, min, max ;
@@ -89,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
             String value = (String) data.getExtras().getString("Result");
             rayonValue=value;
             Toast.makeText(this,"Rayon de "+rayonValue+"m ajouté au filtre de recherche",Toast.LENGTH_SHORT).show();
+            //Sauvegarder les préférences de l'utilisateur même quand l'application est détruite
+            SharedPreferences.Editor ed = pref.edit();
+            ed.putString("memoire", value);
+            ed.commit();
         }
     }
 
@@ -231,6 +237,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         OrientationUtils.unlockOrientation(this);
+        Log.i("TAG", "Lancement de l'activité");
+        //Si l'utilisateur a déjà modifié ses préférences, on les récupère
+        pref = getPreferences(Activity.MODE_PRIVATE);
+        if (pref.contains("memoire")) {
+            rayonValue=pref.getString("memoire", "unknown");
+        }
     }
 
     @Override

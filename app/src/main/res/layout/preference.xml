@@ -26,7 +26,6 @@
         android:layout_centerInParent="true"
         app:bar_color="@color/themeViolet"
         app:end_text="2000"
-        app:initial_position="0.25"
         app:start_text="1" />
 
     <Button
