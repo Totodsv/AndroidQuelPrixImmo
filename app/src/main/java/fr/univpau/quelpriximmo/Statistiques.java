@@ -54,8 +54,9 @@ public class Statistiques extends AppCompatActivity {
         barDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
         //        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         barDataSet.setHighlightEnabled(true);
-        barDataSet.setHighLightColor(Color.RED);
-        barDataSet.setColors(new int[]{Color.parseColor("#FF7F50")});
+        barDataSet.setHighLightColor(R.color.themeWhite);
+        //barDataSet.setColors(new int[]{Color.parseColor("#ff9d0b")});
+        barDataSet.setColors(new int[]{Color.parseColor("#bb21d6")});
         barDataSet.setDrawValues(false);
 
         BarData barData = new BarData(barDataSet);
@@ -73,7 +74,6 @@ public class Statistiques extends AppCompatActivity {
         labels.add( stringEtendue.get(3));
         labels.add( stringEtendue.get(4));
         labels.add( stringEtendue.get(5));
-
 
         barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
         barChart.animateY(1000);

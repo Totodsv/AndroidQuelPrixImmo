@@ -54,8 +54,6 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
         Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + latitude);
         Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + longitute);
 
-
-
         String url = "https://api.cquest.org/dvf?lat="+latitude+"&lon="+longitute+"&dist="+rayon;
 
         Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + url);

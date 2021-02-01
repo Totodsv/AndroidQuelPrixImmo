@@ -143,9 +143,6 @@ public class Resultat extends AppCompatActivity {
                 }
 
             }
-
-
-
             barNbValeur.add(nbBarre1);
             barNbValeur.add(nbBarre2);
             barNbValeur.add(nbBarre3);
@@ -254,7 +251,6 @@ public class Resultat extends AppCompatActivity {
             c1=c1+"00000";
         }
         return  Integer.parseInt(c1);
-
 
     }
 
