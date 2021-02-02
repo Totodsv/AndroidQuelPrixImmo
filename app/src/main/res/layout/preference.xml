@@ -11,8 +11,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
         android:layout_above="@id/rayon"
-        android:text="@string/txtPref"
-        android:padding="50dp"/>
+        android:text="@string/txtPref" />
 
     <EditText
         android:id="@+id/rayon"
@@ -22,11 +21,7 @@
         android:inputType="number"
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
-        android:layout_above="@id/fluidSlider"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_above="@id/fluidSlider"/>
 
     <com.ramotion.fluidslider.FluidSlider
         android:id="@+id/fluidSlider"
@@ -36,30 +31,30 @@
         app:bar_color="@color/themeViolet"
         app:end_text="2000"
         app:start_text="1" />
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_alignParentBottom="true"
-    android:layout_centerInParent="true"
-    android:weightSum="1">
-    <Button
-        android:id="@+id/btnConfirmer"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:onClick="confirmer"
-        android:text="Confirmer"
-        android:layout_weight="0.4"/>
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:weightSum="1">
+        <Button
+            android:id="@+id/btnConfirmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:onClick="confirmer"
+            android:text="Confirmer"
+            android:layout_weight="0.4"/>
 
-    <Button
-        android:id="@+id/btnDefaut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="defaut"
-        android:text="Rétablir"
-        android:layout_weight="0.6"/>
-</LinearLayout>
+        <Button
+            android:id="@+id/btnDefaut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="defaut"
+            android:text="Rétablir"
+            android:layout_weight="0.6"/>
+    </LinearLayout>
 
 
 </RelativeLayout>
