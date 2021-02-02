@@ -81,6 +81,9 @@ protected void onStart() {
     }
 
     public void sauvegarder(){
+        if(tvRayon.getText().toString().equals("")){
+            tvRayon.setText("500");
+        }
         Intent resultInt = new Intent();
         resultInt.putExtra("Result", tvRayon.getText().toString());
         setResult(Activity.RESULT_OK, resultInt);
