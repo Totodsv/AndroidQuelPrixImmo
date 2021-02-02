@@ -74,6 +74,7 @@ public class Resultat extends AppCompatActivity {
         else{
             nombreResultats.setText(String.valueOf(arlText.size())+" bien a été trouvé");
             nombreResultats.setGravity(Gravity.CENTER_HORIZONTAL);
+            Toast.makeText(this,"Vérifiez que la géolocalisation est activée",Toast.LENGTH_SHORT).show();
         }
         NumberFormat nf = NumberFormat.getInstance(); //Pour espacer les nombres tout les 3 chiffres
 
@@ -99,8 +100,6 @@ public class Resultat extends AppCompatActivity {
             String s = nf.format(Integer.parseInt((String.valueOf(sansVirgule))));
             valeur_fonciere=s+" €"; //Ajout du symbole € après le prix
             valeur.add(Float.parseFloat((String) arlText.get(i).get("valeur_fonciere")));
-
-            //valeur_fonciere=String.valueOf(arlText.get(i).get("valeur_fonciere"))+" €";
             type_local=String.valueOf(arlText.get(i).get("type_local"))+" / ";
             nombre_pieces_principales=String.valueOf(arlText.get(i).get("nombre_pieces_principales"))+"p";
             adresse=String.valueOf(arlText.get(i).get("adresse"));

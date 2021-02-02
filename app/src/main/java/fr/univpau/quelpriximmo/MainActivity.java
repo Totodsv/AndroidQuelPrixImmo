@@ -185,9 +185,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState (Bundle savedInstanceState) {
         super.onRestoreInstanceState (savedInstanceState);
-        // Restore our variable by key
-        //count = savedInstanceState.getInt (“Count”);
-        // We can also set the default value after the key, separated by commas
+
         rayonValue=savedInstanceState.getString("Rayon");
         min=savedInstanceState.getString("Minimum");
         max=savedInstanceState.getString("Maximum");
@@ -249,24 +247,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         OrientationUtils.unlockOrientation(this);
+        Log.i("TAG", "Resume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         OrientationUtils.unlockOrientation(this);
+        Log.i("TAG", "Pause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         OrientationUtils.unlockOrientation(this);
+        Log.i("TAG", "Stop");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         OrientationUtils.unlockOrientation(this);
+        Log.i("TAG", "Restart");
     }
 
     public static String getRayon() {

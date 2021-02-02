@@ -50,13 +50,13 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
         String latitude = MainActivity.getLatitude();
         String longitute = MainActivity.getLongitude();
 
-        Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + rayon);
-        Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + latitude);
-        Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + longitute);
+        Log.i(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + rayon);
+        Log.i(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + latitude);
+        Log.i(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + longitute);
 
         String url = "https://api.cquest.org/dvf?lat="+latitude+"&lon="+longitute+"&dist="+rayon;
 
-        Log.e(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + url);
+        Log.i(TAG, "BBBBBBBBBBBBBBBBBBBBBB: " + url);
         String jsonStr = sh.makeServiceCall(url);
 
         if (jsonStr != null) {
@@ -169,11 +169,11 @@ public class GetImmo extends AsyncTask<Void, Void, Void> {
                     }
                 }
             } catch (final JSONException e) {
-                Log.e(TAG, "Json parsing error: " + e.getMessage());
+                Log.i(TAG, "Json parsing error: " + e.getMessage());
             }
 
         } else {
-            Log.e(TAG, "Couldn't get json from server.");
+            Log.i(TAG, "Couldn't get json from server.");
         }
         return null;
     }
